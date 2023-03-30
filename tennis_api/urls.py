@@ -12,41 +12,15 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-#from django.contrib import admin
-#from django.urls import path
 
-#urlpatterns = [
-#    path('admin/', admin.site.urls),
-#]
-
-#urls.py
-'''
-from django.conf import settings
 from django.contrib import admin
 from django.urls import path
-#from django.utils import timezone
-
-def players_api(request):
-    #Score should be as a string
-    players_score = {"player_1":0, "player_2":2}
-    return players_score
-
-def players_api(request):
-    #Score should be as a string
-    players_score = {"player_1":0, "player_2":2}
-    #Now display the scores:
-    if players_score["player_1"] == 3 and players_score["player_2"] == 3:
-        #Deuce
-    return players_score
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/players/', players_api),
 ]
-'''
+"""
 
-# time_api/urls.py
 from django.conf import settings
 from django.contrib import admin
 from django.http import JsonResponse
@@ -56,13 +30,23 @@ import argparse
 import random
 import numpy as np
 
-def player1_api(request):
-    return player1_score
-
-def player2_api(request):
-    return player1_score
-
 SCORE_MAPPINGS = {0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty"}
+
+
+#Generate skill levels as decimals.
+player_1_skill = random.uniform(0,1)
+player_2_skill = random.uniform(0,1)
+
+player_1_name = "Joanna"
+player_2_name = "David"
+
+players_skill = {player_1_name: player_1_skill, player_2_name: player_2_skill}
+players_points = {player_1_name: 0, player_2_name: 0}
+
+print(players_skill)
+
+def players_api(request):
+    return JsonResponse(players_points)
 
 def play_game(player1_score, player2_score):
     Deuce = "Deuce"
@@ -86,18 +70,12 @@ def play_game(player1_score, player2_score):
         if (player2_score > player1_score):
             return (Deuce, Advantage, False) 
 
+urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('api/players_api/', players_api)
+]
+
 def main():
-    #Generate skill levels as decimals.
-    player_1_skill = random.uniform(0,1)
-    player_2_skill = random.uniform(0,1)
-
-    player_1_name = "Prem Pant"
-    player_2_name = "Lachie Pring"
-
-    players_skill = {player_1_name: player_1_skill, player_2_name: player_2_skill}
-    players_points = {player_1_name: 0, player_2_name: 0}
-
-    print(players_skill)
     #Probability player 1 wins the point
     player_1_percentage = player_1_skill/(player_1_skill + player_2_skill)
     endgame = False
@@ -119,13 +97,3 @@ def main():
                 p1score = ret[0], p2name = player_2_name, p2score = ret[1]))
 
 main()
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/player1/', player1_api),
-    path('api/player2/', player2_api),
-]
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser("main")
