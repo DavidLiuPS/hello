@@ -37,8 +37,8 @@ SCORE_MAPPINGS = {0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty"}
 player_1_skill = random.uniform(0,1)
 player_2_skill = random.uniform(0,1)
 
-player_1_name = "Joanna"
-player_2_name = "David"
+player_1_name = "Dick Grayson"
+player_2_name = "Jason Todd"
 
 players_skill = {player_1_name: player_1_skill, player_2_name: player_2_skill}
 players_points = {player_1_name: 0, player_2_name: 0}
