@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)bef*elbu#-r-k_y)!&#d@dse^s#r%8z2ggsp4e9cf85*n&2qw'
+SECRET_KEY = 'django-insecure-v1ya)q*%ed3^-8qgq68#a*k--$+ngm)=%b7v@e&6wb!o-fks18'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -111,8 +111,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-SCORE_MAPPINGS = {0: "love", 1: "fifteen", 2: "thirty", 3: "forty"}
 SCORES = [0, 1, 2, 3, 4]
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
